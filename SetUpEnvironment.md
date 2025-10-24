@@ -100,7 +100,7 @@ conda env create -f environment.yml
 conda activate nlp_env
 
 python -m pip install scispacy==0.5.3 --no-deps
-```
+``
 The last command ensures the correct version of scispacy is installed
 
 ### ➕ Bonus: Add the environment as a kernel in jupyter notebook 
