@@ -35,9 +35,8 @@ python -m pip install scispacy==0.5.3 --no-deps
 To add the conda environment as a kernel that can be used in jupyter run the following while the environment is activated
 
 <pre>
-  python -m ipykernel install --user --name=nlp_env
-</pre>
+python -m ipykernel install --user --name=nlp_env
 jupyter lab
-``
+</pre>
 
 Now, jupyter lab will open in anew tab and the environment can be selected as the active kernel
