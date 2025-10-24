@@ -31,6 +31,3 @@ dependencies:
   - pip:
       # SciSpaCy (installed with --no-deps to avoid spaCy rebuilds)
       - scispacy==0.5.3
-      # Optional: SciSpaCy model (small)
-      # - https://github.com/allenai/scispacy-models/releases/download/v0.5.3/en_core_sci_sm-0.5.3.tar.gz
-
