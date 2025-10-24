@@ -32,7 +32,7 @@ Establish a stable, reproducible Conda-based environment that uses spaCy and Sci
 **Problem:** `pip install scispacy` tried to compile `spaCy` / `thinc` using Rust + Cython.  
 **Fix:**  
 
-<pre>```bash
+<pre>```
 pip install scispacy==0.5.3 --no-deps
 ```
 </pre>
@@ -46,7 +46,7 @@ This forces SciSpaCy to link against the existing Conda binaries.
 Use pre-compiled Conda-Forge binaries:
 
 <pre>
-```bash
+```
 conda install -c conda-forge tokenizers=0.19.1 transformers=4.42.4
 ```
 </pre>
@@ -58,7 +58,7 @@ conda install -c conda-forge tokenizers=0.19.1 transformers=4.42.4
 Always invoke pip through the environment’s Python:
 
 <pre>
-```bash
+```
 python -m pip install scispacy==0.5.3 --no-deps
 ```
 </pre>
@@ -66,7 +66,7 @@ python -m pip install scispacy==0.5.3 --no-deps
 Verify with:
 
 <pre>
-```bash
+```
 which python
 which pip
 ```
@@ -81,9 +81,9 @@ Both should point inside /opt/anaconda3/envs/nlp_env/.
 **Fix:**
 
 <pre>
-```bash
+```
 source /Users/mariakalimeri/opt/anaconda3/etc/profile.d/conda.sh
-``
+```
 </pre>
 
 Add to ~/.zshrc for persistence.
