@@ -32,8 +32,7 @@ Establish a stable, reproducible Conda-based environment that uses spaCy and Sci
 **Problem:** `pip install scispacy` tried to compile `spaCy` / `thinc` using Rust + Cython.  
 **Fix:**  
 
-<pre>
-```bash
+<pre>```bash
 pip install scispacy==0.5.3 --no-deps
 ```
 </pre>
