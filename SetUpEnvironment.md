@@ -31,6 +31,7 @@ Establish a stable, reproducible Conda-based environment that uses spaCy and Sci
 ### 2️⃣ pip attempting to compile from source
 **Problem:** `pip install scispacy` tried to compile `spaCy` / `thinc` using Rust + Cython.  
 **Fix:**  
+
 ```bash
 pip install scispacy==0.5.3 --no-deps
 ```
@@ -48,7 +49,7 @@ conda install -c conda-forge tokenizers=0.19.1 transformers=4.42.4
 
 ### 4️⃣ “Permission denied” errors writing to /Library/...
 
-**Problem: ** pip used macOS system Python 3.13 instead of Conda’s Python.
+**Problem:** pip used macOS system Python 3.13 instead of Conda’s Python.
 **Fix:**
 Always invoke pip through the environment’s Python:
 
@@ -62,8 +63,7 @@ Verify with:
 which python
 which pip
 ``
-
-→ both should point inside /opt/anaconda3/envs/nlp_env/.
+Both should point inside /opt/anaconda3/envs/nlp_env/.
 
 ### 5️⃣ Conda initialization missing
 
@@ -99,12 +99,14 @@ All the instructions are listed in the file environment.yml, which we will use t
 conda env create -f environment.yml
 conda activate nlp_env
 
-# Install SciSpaCy safely (enforcing the installation of right version)
 python -m pip install scispacy==0.5.3 --no-deps
+```
+The last command ensures the correct version of scispacy is installed
 
 ### ➕ Bonus: Add the environment as a kernel in jupyter notebook 
 
 To add the conda environment as a kernel that can be used in jupyter run the following while the environment is activated
+
 ``bash
 python -m ipykernel install --user --name=nlp_env
 jupyter lab
