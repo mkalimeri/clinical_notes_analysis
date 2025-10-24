@@ -99,11 +99,10 @@ All the instructions are listed in the file environment.yml, which we will use t
 conda env create -f environment.yml
 conda activate nlp_env
 
-#Install SciSpaCy safely (enforcing the installation of right version)
+# Install SciSpaCy safely (enforcing the installation of right version)
 python -m pip install scispacy==0.5.3 --no-deps
-``
 
-### Bonus: Add the environment as a kernel in jupyter notebook 
+### ➕ Bonus: Add the environment as a kernel in jupyter notebook 
 
 To add the conda environment as a kernel that can be used in jupyter run the following while the environment is activated
 ``bash
