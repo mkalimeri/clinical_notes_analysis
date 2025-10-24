@@ -95,7 +95,9 @@ Add to ~/.zshrc for persistence.
 
 ### ⚙️ Final Environment Creation Steps
 
-All the instructions are listed in the file environment.yml, which we will use to create the conda environment
+All the instructions are listed in the file environment.yml, which we will use to create the conda environment.
+
+On the terminal, move into the project folder and type the following
 
 <pre>
 conda env create -f environment.yml
