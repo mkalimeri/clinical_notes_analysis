@@ -22,11 +22,11 @@ As explained in the SetUpEnvironment.md file, in order to use scispacy, an older
 
 ### Conda Environment Creation Steps
 
-``bash
+<pre>
 conda env create -f environment.yml
 conda activate nlp_env
 python -m pip install scispacy==0.5.3 --no-deps
-``
+</pre>
 
 ### Bonus: Add the environment as a kernel in jupyter notebook 
 
