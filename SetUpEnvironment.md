@@ -32,9 +32,12 @@ Establish a stable, reproducible Conda-based environment that uses spaCy and Sci
 **Problem:** `pip install scispacy` tried to compile `spaCy` / `thinc` using Rust + Cython.  
 **Fix:**  
 
+<pre>
 ```bash
 pip install scispacy==0.5.3 --no-deps
 ```
+</pre>
+
 This forces SciSpaCy to link against the existing Conda binaries.
 
 ### 3️⃣ Tokenizers build failure
@@ -43,9 +46,11 @@ This forces SciSpaCy to link against the existing Conda binaries.
 **Fix:**
 Use pre-compiled Conda-Forge binaries:
 
+<pre>
 ```bash
 conda install -c conda-forge tokenizers=0.19.1 transformers=4.42.4
 ```
+</pre>
 
 ### 4️⃣ “Permission denied” errors writing to /Library/...
 
@@ -53,16 +58,21 @@ conda install -c conda-forge tokenizers=0.19.1 transformers=4.42.4
 **Fix:**
 Always invoke pip through the environment’s Python:
 
-``bash
+<pre>
+```bash
 python -m pip install scispacy==0.5.3 --no-deps
-``
+```
+</pre>
 
 Verify with:
 
-``bash
+<pre>
+```bash
 which python
 which pip
-``
+```
+</pre>
+
 Both should point inside /opt/anaconda3/envs/nlp_env/.
 
 ### 5️⃣ Conda initialization missing
@@ -71,9 +81,11 @@ Both should point inside /opt/anaconda3/envs/nlp_env/.
 **Root cause:** Conda installed under /Users/mariakalimeri/opt/anaconda3.
 **Fix:**
 
-``bash
+<pre>
+```bash
 source /Users/mariakalimeri/opt/anaconda3/etc/profile.d/conda.sh
 ``
+</pre>
 
 Add to ~/.zshrc for persistence.
 
@@ -95,20 +107,24 @@ Add to ~/.zshrc for persistence.
 
 All the instructions are listed in the file environment.yml, which we will use to create the conda environment
 
-``bash
+<pre>
+```bash
 conda env create -f environment.yml
 conda activate nlp_env
 python -m pip install scispacy==0.5.3 --no-deps
-``
+```
+</pre>
 
 The last command ensures the correct version of scispacy is installed
 
 ### ➕ Bonus: Add the environment as a kernel in jupyter notebook 
 
 To add the conda environment as a kernel that can be used in jupyter run the following while the environment is activated
-
-``bash
+<pre>
+```bash
 python -m ipykernel install --user --name=nlp_env
 jupyter lab
-``
+```
+</pre>
+
 Now, jupyter lab will open in anew tab and the environment can be selected as the active kernel
