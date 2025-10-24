@@ -26,13 +26,15 @@ As explained in the SetUpEnvironment.md file, in order to use scispacy, an older
 conda env create -f environment.yml
 conda activate nlp_env
 
-#Install SciSpaCy safely (enforcing the installation of right version)
 python -m pip install scispacy==0.5.3 --no-deps
 ``
 
 ### Bonus: Add the environment as a kernel in jupyter notebook 
 
 To add the conda environment as a kernel that can be used in jupyter run the following while the environment is activated
+
+On the terminal, move into the project folder and type the following
+
 ``bash
 python -m ipykernel install --user --name=nlp_env
 jupyter lab
