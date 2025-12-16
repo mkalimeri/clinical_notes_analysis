@@ -1,0 +1,21 @@
+name: analysis_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - ipykernel
+  - pip
+  - boto3
+  - s3fs
+  - python-dotenv
+  - shap
+  - pip:
+      - transformers
+      - datasetsy
+      

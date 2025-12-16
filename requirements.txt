@@ -1,0 +1,13 @@
+# SciSpaCy and NLP
+scispacy==0.5.3
+
+# Optional transformer support (Hugging Face)
+transformers>=4.39.0,<4.45.0
+datasets>=2.18.0
+
+# Visualization / utils
+matplotlib>=3.7.0
+seaborn>=0.12.2
+tqdm>=4.65.0
+jupyterlab>=4.0.0
+
