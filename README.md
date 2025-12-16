@@ -24,7 +24,6 @@ At a high level, the steps I took to process the free text and extract data to c
 - I used sciSpacy's entity linker, to standardise each entity into UMLS CUIs [1]
 - CUI2vec embeddings were used to project CUIs into a vector space [2]
 - The embeddings were passed as input into classifiers, the best classifier was chosen by means of cross validation and hyperparameter tuning
-- !!! **Paramenter importance**
 
 ## 3. Results
 
