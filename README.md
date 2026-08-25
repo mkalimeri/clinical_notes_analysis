@@ -6,15 +6,16 @@
 ---
 
 ## 1. Introduction
-In this project, I use a dataset containing clinical notes (transcripts) to examine how Natural Language Processing techniques cam be applied to extract diseases, medications, and symptoms, as well as predict the medical specialty based on symptoms.  
+In this project, I use a dataset containing clinical notes (transcriptions) to explore how Natural Language Processing (NLP) techniques can be applied to extract medical concepts from free text and use them to predict medical specialty.
 
-**Goals:**
+**Goals**
+
 - Named Entity Recognition (NER) to identify medications and medical conditions in free text
-- Entity linking with UMLS
-- Medical specialty perdiction
+- Entity linking with UMLS to standardise extracted medical concepts
+- Medical specialty classification
 - Visualisation of insights
 
-My main focus in this project was to explore how free medical text can be processed and produce tabular data that can be used with conventional machine learning models (e.g. linear regression, bagging/boosting methods). My focus was not on achieving the highest performance on the classification task.
+The main focus of this project was to explore how unstructured medical text can be transformed into structured features that can be used with conventional machine learning models. Rather than aiming primarily for the highest possible classification performance, I focused on building an end-to-end pipeline that takes raw clinical text, extracts and standardises medical concepts, transforms them into numerical features, and uses those features to make a prediction.
 
 ## 2. Methods
 
@@ -23,21 +24,32 @@ At a high level, the steps I took to process the free text and extract data to c
 - Processed the data with spaCy and ScispaCy to detect entities (chemicals and diseases), no finetuning was performed
 - I used sciSpacy's entity linker, to standardise each entity into UMLS CUIs [1]
 - CUI2vec embeddings were used to project CUIs into a vector space [2]
-- The embeddings were passed as input into classifiers, the best classifier was chosen by means of cross validation and hyperparameter tuning
+- Used these feature vectors to train and compare several conventional machine learning classifiers, with model selection based on cross-validation and hyperparameter tuning.
 
 ## 3. Results
 
 ### Entity recogniion
-No finetuning was performed for the entity recognition task, and there was no ground truth available. Consequently, I did not calculate success metrics on the entity recognition task. There was a small amount of text with no entities.
+No fine-tuning was performed for the entity recognition task, and no labelled ground truth was available for this dataset. Consequently, I did not calculate quantitative performance metrics for entity recognition. Manual inspection showed both successful entity extraction and examples of missed or imperfectly classified entities. A small number of transcriptions contained no detected entities.
 
 ### Entity linking
-Entity linking was succesfully applies. Again, no ground truth was available.
+Entity linking was applied to map extracted medical concepts to UMLS CUIs. In the absence of labelled ground truth, I performed qualitative spot checks of the mappings, including checking whether different expressions referring to the same medical concept were mapped consistently.
 
 ### Embeddings
-85% of the CUIs dtected had corresponding embeddings available in CUI2vec. 
+Approximately 85% of the detected CUIs had corresponding embeddings available in CUI2Vec. The CUIs associated with each transcription were mapped to their available embeddings, and the embeddings were averaged to produce a single feature vector for each record. Records for which no usable embeddings were available were removed from the classification dataset.
 
 ### Classification
-**Todo**
+After removing medical specialties with too few samples for meaningful model training and evaluation, the classification dataset contained 4,310 transcriptions across 19 medical specialties.
+
+A DummyClassifier was used to establish a naive baseline. Several conventional machine learning models were then compared using stratified cross-validation and macro F1-score, including Logistic Regression, Linear SVM, XGBoost, Random Forest and AdaBoost. The strongest-performing models were subsequently evaluated using hyperparameter tuning.
+
+Logistic Regression produced the best overall performance. Hyperparameter tuning resulted in only a small improvement over the default model, suggesting that classifier choice and tuning were not the main limitations on performance.
+
+## 4. Conclusion/Future Work
+This project demonstrates an end-to-end approach for transforming unstructured clinical text into structured features that can be used with conventional machine learning models. Medical entities were extracted from clinical transcriptions, standardised using UMLS CUIs, and represented numerically using CUI2Vec embeddings before being used for medical specialty classification.
+
+While the classification models performed better than the naive baseline, overall performance remained modest and hyperparameter tuning produced only small improvements. This suggests that the representation of the clinical notes, rather than classifier selection alone, is an important limitation. Averaging CUI2Vec embeddings provides a compact representation of the medical concepts present in each transcription, but discards much of the contextual information contained in the original text.
+
+Future work could therefore focus on improving the input representation rather than further classifier tuning. Possible directions include combining concept-level CUI information with contextual embeddings from biomedical language models such as BioClinicalBERT or PubMedBERT, exploring more informative methods for aggregating entity embeddings, and filtering low-confidence entity extractions.
 
 ## 4. How to explore this notebook?
 
