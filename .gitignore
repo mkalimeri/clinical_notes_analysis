@@ -1,0 +1,24 @@
+# Secrets / local configuration
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Local data
+data/
+
+# Local/experimental artifacts
+*.pickle
+*.pkl
+
+# Project notes / scratch files
+Week 1 - Plan.docx
+text_processing/Draft_Healthcare_Text_Processing.ipynb

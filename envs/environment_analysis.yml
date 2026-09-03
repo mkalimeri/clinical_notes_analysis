@@ -17,5 +17,4 @@ dependencies:
   - shap
   - pip:
       - transformers
-      - datasetsy
-      
+      - datasets
